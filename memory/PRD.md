@@ -36,6 +36,7 @@ Links: YouTube @crcarmo · Instagram @cr_carmo · WhatsApp wa.me/+5531991525097
 - Integração ChatGPT (2026-09-28): POST /api/chat (SSE streaming, modelo gpt-5.4 via EMERGENT_LLM_KEY, histórico em MongoDB chat_messages) + widget de chat flutuante no site (canto inferior esquerdo)
 - Integração Google Sign-In (2026-09-28): auth gerenciada pela Emergent (auth.emergentagent.com), endpoints /api/auth/session, /api/auth/me, /api/auth/logout, cookie httpOnly 7 dias, botão Entrar/Sair no cabeçalho desktop e mobile. Login real com conta Google só foi testado via seed de sessão (Google exige conta humana)
 - Personalidade da IA "voz do Carmo" (2026-09-28): system message reescrito em primeira pessoa com o estilo dele (mineiro raiz, frases curtas, "Apenas treine", "sem enrolação", zero emojis), conhecimento dos serviços e canais reais, regras anti-invenção de preço/prazo e CTA WhatsApp em toda resposta
+- Fala → texto no chat (2026-09-28): botão de microfone no widget (MediaRecorder) grava a voz do visitante, POST /api/transcribe transcreve com OpenAI Whisper (whisper-1, language=pt via EMERGENT_LLM_KEY, máx 25MB) e envia como mensagem pro assistente. Testado com o áudio real do Carmo (m4a): "Oi, boa noite, tudo bem? Eu sou o Carmo..." — funcionou
 - data-testid em todos os elementos interativos
 
 ## Verificado

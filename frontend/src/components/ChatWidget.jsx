@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Send, Sparkles, X } from "lucide-react";
+import axios from "axios";
+import { Mic, Send, Sparkles, X } from "lucide-react";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const GREETING =
@@ -10,7 +11,11 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState([{ role: "assistant", text: GREETING }]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
+  const [recording, setRecording] = useState(false);
+  const [transcribing, setTranscribing] = useState(false);
   const listRef = useRef(null);
+  const recorderRef = useRef(null);
+  const chunksRef = useRef([]);
 
   const sessionId = useRef(
     localStorage.getItem("carmo_chat_session") ||
@@ -27,10 +32,11 @@ export default function ChatWidget() {
     }
   }, [messages, busy, open]);
 
-  const send = async () => {
-    const text = input.trim();
+  const pushAssistant = (text) => setMessages((m) => [...m, { role: "assistant", text }]);
+
+  const sendWithText = async (rawText) => {
+    const text = (rawText || "").trim();
     if (!text || busy) return;
-    setInput("");
     setBusy(true);
     setMessages((m) => [...m, { role: "user", text }, { role: "assistant", text: "" }]);
 
@@ -84,6 +90,63 @@ export default function ChatWidget() {
       setBusy(false);
     }
   };
+
+  const send = () => {
+    const text = input.trim();
+    if (!text || busy) return;
+    setInput("");
+    sendWithText(text);
+  };
+
+  const startRecording = async () => {
+    if (!navigator.mediaDevices || !window.MediaRecorder) {
+      pushAssistant("Seu navegador não deixa gravar áudio. Digita sua dúvida aí embaixo.");
+      return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const rec = new MediaRecorder(stream);
+      chunksRef.current = [];
+      rec.ondataavailable = (e) => {
+        if (e.data.size > 0) chunksRef.current.push(e.data);
+      };
+      rec.onstop = async () => {
+        stream.getTracks().forEach((t) => t.stop());
+        const mime = rec.mimeType || "audio/webm";
+        const ext = mime.includes("mp4") ? "m4a" : "webm";
+        const blob = new Blob(chunksRef.current, { type: mime });
+        setRecording(false);
+        setTranscribing(true);
+        try {
+          const fd = new FormData();
+          fd.append("audio", blob, `fala.${ext}`);
+          const res = await axios.post(`${API}/transcribe`, fd);
+          const text = (res.data.text || "").trim();
+          if (text) {
+            await sendWithText(text);
+          } else {
+            pushAssistant("Não captei o que você falou, irmão. Tenta de novo ou digita aí.");
+          }
+        } catch (e) {
+          pushAssistant("Não consegui ouvir agora. Digita sua dúvida ou chama no WhatsApp: (31) 99152-5097.");
+        } finally {
+          setTranscribing(false);
+        }
+      };
+      rec.start();
+      recorderRef.current = rec;
+      setRecording(true);
+    } catch (e) {
+      pushAssistant("Libera a permissão do microfone no navegador pra eu te ouvir, né?");
+    }
+  };
+
+  const stopRecording = () => {
+    if (recorderRef.current && recorderRef.current.state !== "inactive") {
+      recorderRef.current.stop();
+    }
+  };
+
 
   return (
     <>
@@ -147,6 +210,23 @@ export default function ChatWidget() {
               IA pode errar · confirme no WhatsApp (31) 99152-5097
             </p>
             <div className="flex items-center gap-2">
+              <button
+                onClick={recording ? stopRecording : startRecording}
+                disabled={transcribing || busy}
+                data-testid="chat-mic-button"
+                aria-label={recording ? "Parar gravação" : "Falar com o assistente"}
+                className={`flex h-10 w-10 shrink-0 items-center justify-center border transition-colors ${
+                  recording
+                    ? "border-blood-bright bg-blood text-white"
+                    : "border-line bg-card text-zinc-300 hover:border-blood hover:text-white"
+                } disabled:opacity-50`}
+              >
+                {recording ? (
+                  <span className="laser-dot h-3 w-3 rounded-full bg-blood-bright" />
+                ) : (
+                  <Mic className="h-4 w-4" />
+                )}
+              </button>
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -165,6 +245,16 @@ export default function ChatWidget() {
                 <Send className="h-4 w-4" />
               </button>
             </div>
+            {recording && (
+              <p data-testid="chat-recording-indicator" className="mt-2 text-center font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-blood-bright">
+                Gravando… toque no microfone pra parar
+              </p>
+            )}
+            {transcribing && (
+              <p data-testid="chat-transcribing-indicator" className="mt-2 text-center font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-zinc-400">
+                Ouvindo você…
+              </p>
+            )}
           </div>
         </div>
       )}

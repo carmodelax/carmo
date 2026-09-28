@@ -4,11 +4,13 @@ from starlette.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from motor.motor_asyncio import AsyncIOMotorClient
 from emergentintegrations.llm.chat import LlmChat, UserMessage, TextDelta, StreamDone
+from emergentintegrations.llm.openai import OpenAISpeechToText
 import os
 import json
 import logging
 import httpx
 import uuid
+import tempfile
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional
@@ -35,11 +37,12 @@ AI_SYSTEM_MESSAGE = (
     "Você é o CARMO de verdade — instrutor de tiro de Belo Horizonte/MG (IAT Carmo, ficha no Google: "
     "'Instrutor de Armamento e Tiro - Carmo | Assessoria CAC') — respondendo no SEU site, sempre em PRIMEIRA PESSOA, como se fosse ele digitando. "
     "SUA VOZ: mineiro raiz, direto, descontraído e confiante. Frases curtas e energéticas, jeito de instrutor veterano que não tem paciência com enrolação. "
+    "Usa o 'né?' natural dele no meio das frases de vez em quando, sem exagero. "
     "Zero papo de robô, zero formalidade bancária. Feche ideias no estilo dele: 'Apenas treine.', 'Sem enrolação.', 'Vem que aí a gente resolve.', 'O resto é conversa.'. "
     "O QUE VOCÊ FAZ (e pode falar à vontade): aula de tiro do primeiro tiro ao avançado; formação de NOVOS INSTRUTORES de tiro; "
     "curso de proteção residencial pra família; orientação no processo de CAC (Colecionador, Atirador e Caçador), posse e porte de arma. "
     "SEUS CANAIS: WhatsApp (31) 99152-5097, Instagram @cr_carmo, YouTube @crcarmo. "
-    "REGRAS: responda em português brasileiro, no máximo 4 frases curtas; nunca use emojis; sempre caminhos 100% legais e responsáveis — segurança em primeiro lugar; "
+  "REGRAS: responda em português brasileiro, no máximo 4 frases curtas; nunca use emojis; sempre caminhos 100% legais e responsáveis — segurança em primeiro lugar; "
     "NUNCA invente preço, prazo, data, lei citada em detalhe ou certificação: se perguntarem valor, responda no seu estilo que valor é caso a caso e chama no WhatsApp; "
     "se for dúvida jurídica complexa ou caso específico, diga que você analisa o caso no WhatsApp; "
     "sempre termine convidando a agir (chamar no WhatsApp, marcar aula, avaliar a ficha no Google). "
@@ -161,6 +164,54 @@ async def chat(request: ChatRequest):
 
 
 # ---------- Auth (Google via Emergent Auth) ----------
+
+@api_router.post("/transcribe")
+async def transcribe_audio(request: Request):
+    if not EMERGENT_LLM_KEY:
+        raise HTTPException(status_code=500, detail="IA não configurada")
+
+    audio_bytes = None
+    filename = "audio.webm"
+    if "multipart/form-data" in request.headers.get("content-type", ""):
+        form = await request.form()
+        upload = form.get("audio")
+        if upload is None or isinstance(upload, str):
+            raise HTTPException(status_code=400, detail="Áudio ausente")
+        audio_bytes = await upload.read()
+        filename = upload.filename or "audio.webm"
+    else:
+        audio_bytes = await request.body()
+
+    if not audio_bytes:
+        raise HTTPException(status_code=400, detail="Áudio vazio")
+    if len(audio_bytes) > 25 * 1024 * 1024:
+        raise HTTPException(status_code=413, detail="Áudio muito grande (máx 25MB)")
+
+    suffix = os.path.splitext(filename)[1] or ".webm"
+    tmp_path = None
+    try:
+        with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+            tmp.write(audio_bytes)
+            tmp_path = tmp.name
+        stt = OpenAISpeechToText(api_key=EMERGENT_LLM_KEY)
+        with open(tmp_path, "rb") as audio_file:
+            response = await stt.transcribe(
+                file=audio_file,
+                model="whisper-1",
+                response_format="json",
+                language="pt",
+            )
+        return {"text": (response.text or "").strip()}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Falha na transcrição: {e}")
+    finally:
+        if tmp_path:
+            try:
+                os.unlink(tmp_path)
+            except OSError:
+                pass
 
 EMERGENT_SESSION_URL = "https://demobackend.emergentagent.com/auth/v1/env/oauth/session-data"
 
