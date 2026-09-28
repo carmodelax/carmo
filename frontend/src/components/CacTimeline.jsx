@@ -20,12 +20,12 @@ const STEPS = [
   {
     num: "04",
     title: "Requerimento e acompanhamento",
-    desc: "Protocolo do processo com revisão de tudo pra não dar erro em documento nenhum.",
+    desc: "Protocolo do processo com revisão de tudo pra não dar erro em nenhum documento.",
   },
   {
     num: "05",
     title: "Certificado na mão",
-    desc: "Credenciamento ou registro concedido — e você ainda fica de olho nos prazos de renovação.",
+    desc: "Credenciamento ou registro concedido, e você ainda fica de olho nos prazos de renovação.",
   },
 ];
 

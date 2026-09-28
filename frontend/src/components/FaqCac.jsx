@@ -4,7 +4,7 @@ import { Reveal, SectionHeading, waLink } from "./Shared";
 const FAQS = [
   {
     q: "O que é o CAC, na prática?",
-    a: "CAC significa Colecionador, Atirador e Caçador — o credenciamento concedido pelo Exército Brasileiro. É ele que permite, por exemplo, manter acervo de armas e munições e praticar tiro com mais praticidade. Cada perfil (colecionador, atirador ou caçador) tem regras e requisitos próprios.",
+    a: "CAC significa Colecionador, Atirador e Caçador — o credenciamento concedido pelo Exército Brasileiro. É ele que permite, por exemplo, manter acervo de armas e munições e praticar tiro com mais facilidade. Cada perfil (colecionador, atirador ou caçador) tem regras e requisitos próprios.",
     id: "o-que-e-cac",
   },
   {
@@ -39,7 +39,7 @@ export default function FaqCac() {
             eyebrow="Perguntas frequentes"
             title={
               <>
-                Antes de <span className="text-blood-bright">atirar</span>, perguntar
+                Antes de <span className="text-blood-bright">atirar</span>, pergunte
               </>
             }
           />

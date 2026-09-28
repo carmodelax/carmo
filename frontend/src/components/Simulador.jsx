@@ -127,7 +127,7 @@ export default function Simulador() {
                     >
                       <CrosshairIcon className="h-6 w-6 shrink-0 text-blood" strokeWidth={1.5} />
                       <p className="text-sm text-zinc-400">
-                        Mirando ainda? Sem problema — seleciona um objetivo aí em cima e eu te
+                        Ainda em dúvida? Sem problema — seleciona um objetivo aí em cima e eu te
                         mostro o caminho.
                       </p>
                     </motion.div>
