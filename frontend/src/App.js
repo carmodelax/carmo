@@ -13,6 +13,7 @@ import Simulador from "@/components/Simulador";
 import Galeria from "@/components/Galeria";
 import FaqCac from "@/components/FaqCac";
 import CtaFinal from "@/components/CtaFinal";
+import AvaliacoesGoogle from "@/components/AvaliacoesGoogle";
 import Footer from "@/components/Footer";
 import WhatsAppFab from "@/components/WhatsAppFab";
 
@@ -57,6 +58,7 @@ function Home() {
         <Galeria />
         <FaqCac />
         <CtaFinal />
+        <AvaliacoesGoogle />
       </main>
       <Footer />
       <WhatsAppFab />

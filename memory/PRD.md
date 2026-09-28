@@ -30,6 +30,7 @@ Links: YouTube @crcarmo · Instagram @cr_carmo · WhatsApp wa.me/+5531991525097
 - Marquee editorial lento, Sobre com identidade real (logo do canal + links YouTube/Instagram/WhatsApp)
 - 6 cards de curso com CTA WhatsApp individual, timeline CAC 5 etapas, simulador interativo de perfil
 - Galeria, FAQ sobre CAC/posse/aulas/preços, CTA final vermelho, footer, botão flutuante WhatsApp
+- Seção "Google Avaliações" no final do site (2026-09-28): botão "Avaliar no Google" com o link real de avaliação da ficha dele (g.page/r/CXERq_fFMkp_EBM) e link para a ficha no Maps (place_id ChIJqR9QFOqDJmgRcRGr98UySn8 — nome real: "Instrutor de Armamento e Tiro - Carmo | Assessoria CAC"). Sem avaliações públicas para exibir ainda; quando ele tiver ou fornecer chave da API do Google Places, trocar por avaliações ao vivo
 - data-testid em todos os elementos interativos
 
 ## Verificado
