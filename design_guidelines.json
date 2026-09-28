@@ -1,0 +1,111 @@
+{
+  "project_name": "CR Carmo - Instrutor de Tiro e Formação Tática",
+  "app_type": "landing_page",
+  "target_audience": "Pessoas buscando tirar o CAC, obter posse ou porte legal de arma, passar por aulas de tiro do zero ao avançado, treinamento de proteção residencial, e profissionais querendo formação de instrutor de tiro.",
+  "emotional_tone": "Tático, autoritário, disciplinado, intimidadoramente técnico, seguro e focado em defesa e liberdade legal.",
+  "archetype": "THE PERFORMANCE PRO / TACTICAL MINIMALISM",
+  "theme": {
+    "mode": "dark",
+    "background": "#0A0A0B",
+    "surface": "#121215",
+    "card_background": "#18181C",
+    "accent_red": "#DC2626",
+    "accent_red_bright": "#FF2E2E",
+    "accent_amber": "#F59E0B",
+    "text_primary": "#F9FAFB",
+    "text_muted": "#9CA3AF",
+    "border_tactical": "#27272A",
+    "border_red_glow": "#DC262640"
+  },
+  "typography": {
+    "font_family_heading": "Barlow Condensed, Oswald, Chivo, sans-serif",
+    "font_family_body": "Inter, DM Sans, sans-serif",
+    "font_family_mono": "JetBrains Mono, Courier New, monospace",
+    "hierarchy": {
+      "h1_hero": "text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-none",
+      "h2_section": "text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white",
+      "h3_card": "text-xl sm:text-2xl font-bold uppercase tracking-normal text-white",
+      "body": "text-base text-zinc-300 leading-relaxed",
+      "eyebrow": "text-xs uppercase tracking-[0.25em] font-mono text-red-500 font-bold"
+    }
+  },
+  "visual_enhancers": {
+    "war_zone_triggers": "Bordas duras de 1px/2px com recortes no estilo retículo tático (HUD), cantos chanfrados, marcas de mira (+, L-shapes, target reticles), efeito de ruído/textura de aço granulado e indicadores de gatilho ativo.",
+    "smooth_scroll": "Lenis smooth scroll integrado para rolagem de alta fluidez.",
+    "animations": "Line-by-line staggered text reveals via Framer Motion, hover com efeito de mira laser vermelha e micro-interações responsivas."
+  },
+  "image_urls": {
+    "hero_range_action": "https://images.unsplash.com/photo-1779379019105-b40c1bb18621?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHw0fHxzaG9vdGluZyUyMHJhbmdlJTIwdGFyZ2V0JTIwcHJhY3RpY2UlMjB0YWN0aWNhbCUyMGdlYXIlMjBmaXJlYXJtfGVufDB8fHx8MTc5MDU2OTg1Mnww&ixlib=rb-4.1.0&q=85",
+    "target_woods_tactical": "https://images.unsplash.com/photo-1758618851142-609fd12bc1ae?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwyfHxzaG9vdGluZyUyMHJhbmdlJTIwdGFyZ2V0JTIwcHJhY3RpY2UlMjB0YWN0aWNhbCUyMGdlYXIlMjBmaXJlYXJtfGVufDB8fHx8MTc5MDU2OTg1Mnww&ixlib=rb-4.1.0&q=85",
+    "targets_silhouette": "https://images.unsplash.com/photo-1788959647839-a9f83f11521a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwzfHxzaG9vdGluZyUyMHJhbmdlJTIwdGFyZ2V0JTIwcHJhY3RpY2UlMjB0YWN0aWNhbCUyMGdlYXIlMjBmaXJlYXJtfGVufDB8fHx8MTc5MDU2OTg1Mnww&ixlib=rb-4.1.0&q=85",
+    "pistol_tactical": "https://images.unsplash.com/photo-1782800633459-51a74faaa476?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHDFfHxzaG9vdGluZyUyMHJhbmdlJTIwdGFyZ2V0JTIwcHJhY3RpY2UlMjB0YWN0aWNhbCUyMGdlYXIlMjBmaXJlYXJtfGVufDB8fHx8MTc5MDU2OTg1Mnww&ixlib=rb-4.1.0&q=85",
+    "indoor_target_range": "https://images.unsplash.com/photo-1675285551699-0f17c1731430?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwyfHx0YWN0aWNhbCUyMHNob290aW5nJTIwaW5zdHJ1Y3RvciUyMHRhcmdldCUyMHJhbmdlJTIwZ3VuJTIwdHJhaW5pbmd8ZW58MHx8fHwxNzkwNTY5ODQ1fDA&ixlib=rb-4.1.0&q=85",
+    "handgun_ammo_flatlay": "https://images.unsplash.com/photo-1612777660478-735ae8b55004?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHDFfHx0YWN0aWNhbCUyMHNob290aW5nJTIwaW5zdHJ1Y3RvciUyMHRhcmdldCUyMHJhbmdlJTIwZ3VuJTIwdHJhaW5pbmd8ZW58MHx8fHwxNzkwNTY5ODQ1fDA&ixlib=rb-4.1.0&q=85"
+  },
+  "contacts_and_links": {
+    "whatsapp_url": "https://wa.me/5531991525097?text=Ol%C3%A1%20Carmo,%20vim%20pelo%20site%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20cursos%20e%20processo%20CAC.",
+    "youtube_url": "https://youtube.com/@crcarmo",
+    "instagram_url": "https://www.instagram.com/cr_carmo",
+    "whatsapp_display": "(31) 99152-5097"
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "name": "Hero Cinético Tático",
+      "components": ["HUD Header com favmonogram CR", "Masked Line Reveal", "Combat Stats Counters", "Action CTAs para WhatsApp"]
+    },
+    {
+      "id": "marquee",
+      "name": "Marquee Tático Editorial",
+      "components": ["Ticker infinito de palavras-chave táticas com indicadores de mirinha em vermelho"]
+    },
+    {
+      "id": "sobre",
+      "name": "Sobre o Instrutor Carmo",
+      "components": ["Bio do Instrutor Credenciado", "Filosofia Tática", "Embeds/Cards do YouTube & Instagram"]
+    },
+    {
+      "id": "servicos",
+      "name": "Serviços & Formações (Grid Tático)",
+      "components": ["CAC", "Posse de Arma", "Porte de Arma", "Formação de Instrutores", "Proteção Residencial", "Aulas do Zero ao Avançado"]
+    },
+    {
+      "id": "cac_guide",
+      "name": "Guia Passo a Passo do CAC e Posse",
+      "components": ["Linha do tempo interativa de 5 etapas para obtenção do certificado de atirador e posse"]
+    },
+    {
+      "id": "simulador",
+      "name": "Simulador de Perfil de Treinamento",
+      "components": ["Widget interativo onde o visitante seleciona seu objetivo e recebe a sugestão exata de curso"]
+    },
+    {
+      "id": "galeria",
+      "name": "Galeria do Estande de Tiro",
+      "components": ["Grid visual com fotos de tiro real, equipamentos e instrução em estande"]
+    },
+    {
+      "id": "depoimentos",
+      "name": "Depoimentos de Alunos e Instrutores Formados",
+      "components": ["Cards com avaliações reais e distintivos de verificação"]
+    },
+    {
+      "id": "faq",
+      "name": "Perguntas Frequentes (FAQ CAC & Legislação)",
+      "components": ["Accordion interativo com dúvidas sobre laudo psicológico, acervo, requisitos e consulta via WhatsApp"]
+    },
+    {
+      "id": "cta_final",
+      "name": "Chamada Final Tática",
+      "components": ["Bloco vermelho/preto de alto impacto com botão direto pro WhatsApp do Carmo"]
+    }
+  ],
+  "instructions_to_main_agent": "Implementar toda a landing page em um design brutalista tático (preto e vermelho,HUD crosshairs, bordas afiadas, gatilhos visuais) usando React 19, Framer Motion, Lucide Icons, e Tailwind CSS. Todos os botões interativos e links devem incluir atributos data-testid seguindo o padrão kebab-case.",
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Usar esquemas de cores vermelho (#DC2626) e preto (#0A0A0B) de alto contraste com iluminação tática HUD.",
+    "Nunca usar Inter para títulos principais. Usar fontes condensadas e pesadas como Barlow Condensed ou Chivo.",
+    "Adicionar micro-interações de mira/retículo nos hovers de cards e botões.",
+    "Garantir que todos os botões de ação direcionem para o WhatsApp do Carmo (wa.me/+5531991525097) com mensagens pré-formatadas.",
+    "Incluir atributo data-testid em todos os elementos clicáveis e seções principais."
+  ]
+}
