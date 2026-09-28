@@ -1,21 +1,25 @@
 import { useEffect } from "react";
 import "@/App.css";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import HudHeader from "@/components/HudHeader";
 import Hero from "@/components/Hero";
 import TickerMarquee from "@/components/TickerMarquee";
 import Sobre from "@/components/Sobre";
+import VideoAula from "@/components/VideoAula";
 import Servicos from "@/components/Servicos";
 import CacTimeline from "@/components/CacTimeline";
 import Simulador from "@/components/Simulador";
 import Galeria from "@/components/Galeria";
+import Depoimentos from "@/components/Depoimentos";
 import FaqCac from "@/components/FaqCac";
 import CtaFinal from "@/components/CtaFinal";
 import AvaliacoesGoogle from "@/components/AvaliacoesGoogle";
 import Footer from "@/components/Footer";
 import WhatsAppFab from "@/components/WhatsAppFab";
+import ChatWidget from "@/components/ChatWidget";
+import { AuthProvider, AuthCallback } from "@/components/AuthProvider";
 
 function useLenis() {
   useEffect(() => {
@@ -52,25 +56,38 @@ function Home() {
         <Hero />
         <TickerMarquee />
         <Sobre />
+        <VideoAula />
         <Servicos />
         <CacTimeline />
         <Simulador />
         <Galeria />
+        <Depoimentos />
         <FaqCac />
         <CtaFinal />
         <AvaliacoesGoogle />
       </main>
       <Footer />
       <WhatsAppFab />
+      <ChatWidget />
     </div>
   );
+}
+
+function AppRouter() {
+  const location = useLocation();
+  if (location.hash?.includes("session_id=")) {
+    return <AuthCallback />;
+  }
+  return <Home />;
 }
 
 function App() {
   return (
     <ErrorBoundary>
       <BrowserRouter>
-        <Home />
+        <AuthProvider>
+          <AppRouter />
+        </AuthProvider>
       </BrowserRouter>
     </ErrorBoundary>
   );

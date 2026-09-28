@@ -31,6 +31,10 @@ Links: YouTube @crcarmo · Instagram @cr_carmo · WhatsApp wa.me/+5531991525097
 - 6 cards de curso com CTA WhatsApp individual, timeline CAC 5 etapas, simulador interativo de perfil
 - Galeria, FAQ sobre CAC/posse/aulas/preços, CTA final vermelho, footer, botão flutuante WhatsApp
 - Seção "Google Avaliações" no final do site (2026-09-28): botão "Avaliar no Google" com o link real de avaliação da ficha dele (g.page/r/CXERq_fFMkp_EBM) e link para a ficha no Maps (place_id ChIJqR9QFOqDJmgRcRGr98UySn8 — nome real: "Instrutor de Armamento e Tiro - Carmo | Assessoria CAC"). Sem avaliações públicas para exibir ainda; quando ele tiver ou fornecer chave da API do Google Places, trocar por avaliações ao vivo
+- Seção de vídeo real do YouTube (2026-09-28): aula "Posse x Porte" (iMvQeEaGJN4) embedada com thumbnail + play preguiçoso
+- Seção Depoimentos (2026-09-28): array TESTIMONIALS vazio → mostra estado vazio convidando a avaliar no Google; publicar comentários reais quando o Carmo enviar (nada inventado)
+- Integração ChatGPT (2026-09-28): POST /api/chat (SSE streaming, modelo gpt-5.4 via EMERGENT_LLM_KEY, histórico em MongoDB chat_messages) + widget de chat flutuante no site (canto inferior esquerdo)
+- Integração Google Sign-In (2026-09-28): auth gerenciada pela Emergent (auth.emergentagent.com), endpoints /api/auth/session, /api/auth/me, /api/auth/logout, cookie httpOnly 7 dias, botão Entrar/Sair no cabeçalho desktop e mobile. Login real com conta Google só foi testado via seed de sessão (Google exige conta humana)
 - data-testid em todos os elementos interativos
 
 ## Verificado

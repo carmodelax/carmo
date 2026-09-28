@@ -31,11 +31,11 @@ const FAQS = [
 
 export default function FaqCac() {
   return (
-    <section id="faq" className="relative bg-surface/40 py-24 lg:py-32">
+    <section id="faq" className="relative py-24 lg:py-32">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <SectionHeading
-            index="05"
+            index="06"
             eyebrow="Perguntas frequentes"
             title={
               <>
